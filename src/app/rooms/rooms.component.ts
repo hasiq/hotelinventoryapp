@@ -43,7 +43,7 @@ export class RoomsComponent
 
   roomList: RoomList[] = [];
 
-  stream = new Observable((observer) => {
+  stream = new Observable<string>((observer) => {
     observer.next('user1');
     observer.next('user2');
     observer.next('user3');
@@ -99,7 +99,7 @@ export class RoomsComponent
 
   addRoom() {
     const room: RoomList = {
-      roomNumber: '4',
+      // roomNumber: '4',
       roomType: 'Deluxe Room',
       amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kithen',
       price: 500,
@@ -111,6 +111,8 @@ export class RoomsComponent
     };
 
     // this.roomList.push(room);
-    this.roomList = [...this.roomList, room];
+    this.roomsService.addRoom(room).subscribe((data) => {
+      this.roomList = data;
+    });
   }
 }
