@@ -29,7 +29,7 @@ export class RoomsComponent
 
   numberOfRooms = 10;
 
-  hideRooms = false;
+  hideRooms = true;
 
   selectedRoom!: RoomList;
 
@@ -116,7 +116,7 @@ export class RoomsComponent
     });
   }
 
-  editRoom(){
+  editRoom() {
     const room: RoomList = {
       roomNumber: '3',
       roomType: 'Deluxe Room',
@@ -130,6 +130,12 @@ export class RoomsComponent
     };
 
     this.roomsService.editRoom(room).subscribe((data) => {
+      this.roomList = data;
+    });
+  }
+
+  deleteRoom() {
+    this.roomsService.delete('3').subscribe((data) => {
       this.roomList = data;
     });
   }
