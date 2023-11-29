@@ -15,7 +15,7 @@ import { Room, RoomList } from './rooms';
 import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -41,6 +41,8 @@ export class RoomsComponent
 
   title = 'Room List';
 
+  totalBytes = 0;
+
   roomList: RoomList[] = [];
 
   stream = new Observable<string>((observer) => {
@@ -61,6 +63,26 @@ export class RoomsComponent
   constructor(private roomsService: RoomsService) {}
 
   ngOnInit(): void {
+    this.roomsService.getPhotos().subscribe((event) => {
+      switch (event.type) {
+        case HttpEventType.Sent: {
+          console.log('Request has been made');
+          break;
+        }
+        case HttpEventType.ResponseHeader: {
+          console.log('Request success');
+          break;
+        }
+        case HttpEventType.DownloadProgress: {
+          this.totalBytes += event.loaded;
+          break;
+        }
+        case HttpEventType.Response: {
+          console.log(event.body);
+        }
+      }
+    });
+
     this.stream.subscribe({
       next: (value) => console.log(value),
       complete: () => console.log('complete'),
