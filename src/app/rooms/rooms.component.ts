@@ -16,7 +16,7 @@ import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Observable, Subject, Subscription, catchError, of } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'hinv-rooms',
@@ -56,6 +56,8 @@ export class RoomsComponent
       return of([]);
     })
   );
+
+  roomsCount$ = this.roomsService.getRooms$.pipe(map((rooms) => rooms.length));
 
   roomList: RoomList[] = [];
 
