@@ -16,14 +16,14 @@ import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'hinv-rooms',
   templateUrl: './rooms.component.html',
 })
 export class RoomsComponent
-  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked
+  implements OnInit, DoCheck, AfterViewInit, AfterViewChecked, OnDestroy
 {
   hotelName = 'Hilton Hotel';
 
@@ -42,6 +42,10 @@ export class RoomsComponent
   title = 'Room List';
 
   totalBytes = 0;
+
+  subscription!: Subscription;
+
+  rooms$ = this.roomsService.getRooms$;
 
   roomList: RoomList[] = [];
 
@@ -90,11 +94,10 @@ export class RoomsComponent
     });
     this.stream.subscribe((data) => console.log(data));
 
+    // this.roomsService.getRooms$.subscribe((rooms) => {
+    //   this.roomList = rooms;
+    // });
     // console.log(this.headerComponent);
-
-    this.roomsService.getRooms().subscribe((rooms) => {
-      this.roomList = rooms;
-    });
   }
 
   ngAfterViewInit(): void {
@@ -160,5 +163,11 @@ export class RoomsComponent
     this.roomsService.delete('3').subscribe((data) => {
       this.roomList = data;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

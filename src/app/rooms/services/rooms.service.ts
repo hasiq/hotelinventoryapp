@@ -4,6 +4,7 @@ import { environment } from 'src/environment/environment';
 import { HttpClient, HttpRequest } from '@angular/common/http';
 import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
+import { shareReplay } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,8 @@ export class RoomsService {
   }
 
   roomList: RoomList[] = [];
+
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(shareReplay(1));
 
   getRooms() {
     return this.http.get<RoomList[]>('/api/rooms');
@@ -35,11 +38,14 @@ export class RoomsService {
     return this.http.delete<RoomList[]>(`/api/rooms/${id}`);
   }
 
-  getPhotos(){
-    const request = new HttpRequest('GET', `https://jsonplaceholder.typicode.com/photos`,
-    {
-      reportProgress: true,
-    });
+  getPhotos() {
+    const request = new HttpRequest(
+      'GET',
+      `https://jsonplaceholder.typicode.com/photos`,
+      {
+        reportProgress: true,
+      }
+    );
     return this.http.request(request);
   }
 }
