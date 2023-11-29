@@ -16,7 +16,7 @@ import { RoomsListComponent } from './rooms-list/rooms-list.component';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'hinv-rooms',
@@ -45,7 +45,17 @@ export class RoomsComponent
 
   subscription!: Subscription;
 
-  rooms$ = this.roomsService.getRooms$;
+  error$ = new Subject<string>();
+
+  getError$ = this.error$.asObservable();
+
+  rooms$ = this.roomsService.getRooms$.pipe(
+    catchError((err) => {
+      // console.log(err);
+      this.error$.next(err.message);
+      return of([]);
+    })
+  );
 
   roomList: RoomList[] = [];
 
