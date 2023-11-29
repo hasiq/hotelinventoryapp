@@ -115,4 +115,22 @@ export class RoomsComponent
       this.roomList = data;
     });
   }
+
+  editRoom(){
+    const room: RoomList = {
+      roomNumber: '3',
+      roomType: 'Deluxe Room',
+      amenities: 'Air Conditioner, Free Wi-Fi, TV, Bathroom, Kithen',
+      price: 500,
+      photos:
+        'https://www.bing.com/images/search?view=detailV2&ccid=vjBVM3pN&id=D00467F807F3032AC80D47E6D85812F55BA1C25B&thid=OIP.vjBVM3pNH1AaVddiJ9_WHAHaE8&mediaurl=https%3a%2f%2fimages.pexels.com%2fphotos%2f1470945%2fpexels-photo-1470945.jpeg%3fcs%3dsrgb%26dl%3darchitecture-apartment-room-1470945.jpg%26fm%3djpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.be3055337a4d1f501a55d76227dfd61c%3frik%3dW8KhW%252fUSWNjmRw%26pid%3dImgRaw%26r%3d0&exph=4005&expw=6004&q=room+photo&simid=608005406500535660&FORM=IRPRST&ck=231B917EC15897E05EBCFC0079572213&selectedIndex=0&idpp=overlayview&ajaxhist=0&ajaxserp=0',
+      checkinTime: new Date('11-Nov-2021'),
+      checkoutTime: new Date('12-Nov-2021'),
+      rating: 4.5,
+    };
+
+    this.roomsService.editRoom(room).subscribe((data) => {
+      this.roomList = data;
+    });
+  }
 }

@@ -5,7 +5,7 @@
 
 <div [hidden]="hideRooms">
 
-    Number of Rooms: 
+    Number of Rooms:
     <div [ngStyle]="{ 'color' : rooms.availableRooms ? 'green' : 'red'}" [innerText]="numberOfRooms"></div>
 
 </div>
@@ -27,3 +27,5 @@
 </div>
 
 <button (click)="toggle()">Toggle</button>
+
+<button (click)="editRoom()">Edit Room</button>
