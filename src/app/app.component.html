@@ -1,14 +1,14 @@
-<h1>Hello World!</h1>
-<hinv-rooms></hinv-rooms>
+<!-- <h1>Hello World!</h1> -->
+<!-- <hinv-rooms></hinv-rooms> -->
 
- <!-- <hinv-employee></hinv-employee> -->
-<hinv-container>
+<!-- <hinv-employee></hinv-employee> -->
+<!-- <hinv-container>
   <hinv-rooms></hinv-rooms>
   <hinv-employee></hinv-employee>
   <h1>This is from ng-content</h1>
-</hinv-container>
+</hinv-container> -->
 
-<div #name></div>
+<!-- <div #name></div> -->
 
 <!-- <div [ngSwitch]="role">
       <div *ngSwitchCase="'User'">
@@ -25,3 +25,6 @@
 <!-- <div>
   <ng-template #user></ng-template>
 </div> -->
+<a [routerLink]="'rooms'">Rooms</a>
+<a [routerLink]="'employee'">Employee</a>
+<router-outlet></router-outlet>
