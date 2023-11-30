@@ -1,6 +1,7 @@
 import { InitService } from './init.service';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -48,6 +49,7 @@ function initFactory(InitService: InitService) {
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    CommonModule,
   ],
   providers: [
     {
