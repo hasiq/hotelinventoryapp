@@ -10,7 +10,7 @@ import { shareReplay } from 'rxjs';
   providedIn: 'root',
 })
 export class RoomsService {
-  headers = new HttpHeaders({ token: '12312312313131' });
+  // headers = new HttpHeaders({ token: '12312312313131' });
 
   constructor(
     @Inject(APP_SERVICE_CONFIG) private config: AppConfig,
@@ -22,11 +22,7 @@ export class RoomsService {
 
   roomList: RoomList[] = [];
 
-  getRooms$ = this.http
-    .get<RoomList[]>('/api/rooms', {
-      headers: this.headers,
-    })
-    .pipe(shareReplay(1));
+  getRooms$ = this.http.get<RoomList[]>('/api/rooms').pipe(shareReplay(1));
 
   getRooms() {
     return this.http.get<RoomList[]>('/api/rooms');

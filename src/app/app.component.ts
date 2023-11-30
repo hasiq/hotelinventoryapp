@@ -1,14 +1,24 @@
-import { AfterViewInit, Component, ElementRef, Inject, OnInit, Optional, ViewChild, ViewContainerRef } from '@angular/core';
-import { RoomsComponent } from "./rooms/rooms.component";
-import { localStorageToken } from 'src/localstorage.token';
-import { LoggerService } from 'src/logger.service';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  Optional,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
+import { RoomsComponent } from './rooms/rooms.component';
+import { localStorageToken } from 'src/app/localstorage.token';
+import { LoggerService } from 'src/app/logger.service';
+import { InitService } from './init.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'hotelinventoryapp';
 
   // @ViewChild('user', {read: ViewContainerRef}) vcr!: ViewContainerRef;
@@ -18,17 +28,20 @@ export class AppComponent implements OnInit{
   //     componentRef.instance.numberOfRooms = 50;
   // }
 
-  constructor(@Optional() private loggerService: LoggerService,
-  @Inject(localStorageToken) private localStorage: Storage){
-
+  constructor(
+    @Optional() private loggerService: LoggerService,
+    @Inject(localStorageToken) private localStorage: Storage,
+    private initService: InitService
+  ) {
+    console.log(initService.config);
   }
 
-  @ViewChild('name', {static: true}) name!: ElementRef;
+  @ViewChild('name', { static: true }) name!: ElementRef;
 
   ngOnInit(): void {
-      this.loggerService?.log('Appcomponent.ngOnInit()');
-      this.name.nativeElement.innerText = "Hilton Hotel";
+    this.loggerService?.log('Appcomponent.ngOnInit()');
+    this.name.nativeElement.innerText = 'Hilton Hotel';
 
-      this.localStorage.setItem('name', 'Hilton Hotel');
+    this.localStorage.setItem('name', 'Hilton Hotel');
   }
 }
