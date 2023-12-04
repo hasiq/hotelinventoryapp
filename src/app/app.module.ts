@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { RoomsAddComponent } from './rooms/rooms-add/rooms-add.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 function initFactory(InitService: InitService) {
   return () => InitService.init();
@@ -40,6 +41,7 @@ function initFactory(InitService: InitService) {
     AppNavComponent,
     NotfoundComponent,
     RoomsAddComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
