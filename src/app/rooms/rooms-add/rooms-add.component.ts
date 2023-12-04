@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RoomList } from '../rooms';
 import { RoomsService } from '../services/rooms.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'hinv-rooms-add',
@@ -24,9 +25,10 @@ export class RoomsAddComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  AddRoom() {
-    this.roomsService
-      .addRoom(this.room)
-      .subscribe((data) => (this.sucessMessage = 'Room Added Successfully'));
+  AddRoom(roomsForm: NgForm) {
+    this.roomsService.addRoom(this.room).subscribe((data) => {
+      this.sucessMessage = 'Room Added Successfully';
+      roomsForm.reset();
+    });
   }
 }
