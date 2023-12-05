@@ -16,7 +16,7 @@ export class RoomsBookingComponent implements OnInit {
   constructor(private router: ActivatedRoute) {}
 
   ngOnInit() {
-    this.id = this.router.snapshot.params['roomid'];
+    // this.id = this.router.snapshot.params['roomid'];
     // this.id$ = this.router.params.pipe(map((params) => params['roomid']));
     // this.router.paramMap.subscribe((params) => {
     //   params.get('roomid');
