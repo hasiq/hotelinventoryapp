@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { RoomList } from '../rooms';
-import { environment } from 'src/environment/environment';
+import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { APP_SERVICE_CONFIG } from 'src/app/AppConfig/appconfig.service';
 import { AppConfig } from 'src/app/AppConfig/appconfig.interface';
