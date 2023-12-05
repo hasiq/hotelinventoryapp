@@ -17,6 +17,7 @@ import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Observable, Subject, Subscription, catchError, map, of } from 'rxjs';
+import { ConfigService } from 'src/services/config.service';
 
 @Component({
   selector: 'hinv-rooms',
@@ -76,7 +77,10 @@ export class RoomsComponent
 
   // roomService = new RoomsService();
 
-  constructor(private roomsService: RoomsService) {}
+  constructor(
+    private roomsService: RoomsService,
+    private configService: ConfigService
+  ) {}
 
   ngOnInit(): void {
     this.roomsService.getPhotos().subscribe((event) => {
