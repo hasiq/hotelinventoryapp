@@ -46,12 +46,34 @@ export class BookingComponent implements OnInit {
         zipCode: [''],
       }),
       guests: this.fb.array([this.addGuestControl()]),
-      tnc: new FormControl(false, { validators: [Validators.required] }),
+      tnc: new FormControl(false, { validators: [Validators.requiredTrue] }),
     });
   }
 
   addBooking() {
     console.log(this.bookingForm.getRawValue());
+    this.bookingForm.reset({
+      roomId: '2',
+      guestEmail: '',
+      checkinDate: '',
+      checkoutDate: '',
+      bookingStatus: '',
+      bookingAmount: '',
+      bookingDate: '',
+      mobileNumber: '',
+      guestName: '',
+
+      address: {
+        addressLine1: '',
+        addressLine2: '',
+        city: '',
+        state: '',
+        country: '',
+        zipCode: '',
+      },
+      guests: [],
+      tnc: false,
+    });
   }
 
   addGuest() {
