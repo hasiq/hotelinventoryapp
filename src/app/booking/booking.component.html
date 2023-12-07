@@ -137,6 +137,41 @@
     </mat-accordion>
   </div>
   <div>
+    <button type="button" mat-button (click)="addGuest()" color="primary">
+      Add Guest
+    </button>
+  </div>
+  <div formArrayName="guests">
+    <mat-accordion class="example-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Guests </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngFor="let guests of guests.controls; let i = index">
+          <div [formGroupName]="i">
+            <mat-form-field>
+              <input
+                type="text"
+                matInput
+                formControlName="guestName"
+                placeholder="Guest Name"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <input
+                type="number"
+                matInput
+                formControlName="age"
+                placeholder="Age"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+  <div>
     <button mat-button color="primary">Book Room</button>
   </div>
 </form>
