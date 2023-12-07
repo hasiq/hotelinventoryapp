@@ -38,6 +38,6 @@ export class LoginGuard implements CanActivate, CanLoad {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return true;
+    return this.LoginService.isLoggedIn;
   }
 }

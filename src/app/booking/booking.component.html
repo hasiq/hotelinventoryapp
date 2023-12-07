@@ -1,1 +1,79 @@
 <p>booking works!</p>
+{{ bookingForm.value | json }}
+{{ bookingForm.pristine | json }}
+{{ bookingForm.dirty | json }}
+
+<form [formGroup]="bookingForm" (ngSubmit)="addBooking()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Room Id</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="roomId"
+      placeholder="Room Id"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Guest Name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="guestName"
+      placeholder="Guest Name"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      matInput
+      formControlName="guestEmail"
+      placeholder="Provide an Email"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Mobile Number</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="mobileNumber"
+      placeholder="Mobile number"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Booking Amount</mat-label>
+    <input
+      type="number"
+      matInput
+      formControlName="bookingAmount"
+      placeholder="Booking Amount"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Checkin date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="checkinDate" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Checkout date</mat-label>
+    <input matInput [matDatepicker]="picker2" formControlName="checkoutDate" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Booking date</mat-label>
+    <input matInput [matDatepicker]="picker3" formControlName="bookingDate" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-datepicker #picker3></mat-datepicker>
+  </mat-form-field>
+  <div>
+    <button mat-button color="primary">Book Room</button>
+  </div>
+</form>
