@@ -3,7 +3,42 @@
 {{ bookingForm.pristine | json }}
 {{ bookingForm.dirty | json }}
 
+<div>
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="addPassport()"
+  >
+    Add Passport
+  </button>
+</div>
+
+<div>
+  <button
+    mat-raised-button
+    color="primary"
+    type="button"
+    (click)="deletePassport()"
+  >
+    Delete Passport
+  </button>
+</div>
+
 <form [formGroup]="bookingForm" (ngSubmit)="addBooking()">
+  <mat-form-field
+    *ngIf="this.bookingForm.get('passport')"
+    class="example-full-width"
+  >
+    <mat-label>Passport</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="passport"
+      placeholder="Passport Number"
+    />
+  </mat-form-field>
+
   <mat-form-field class="example-full-width">
     <mat-label>Room Id</mat-label>
     <input
@@ -137,7 +172,12 @@
     </mat-accordion>
   </div>
   <div>
-    <button type="button" mat-button (click)="addGuest()" color="primary">
+    <button
+      type="button"
+      mat-raised-button
+      (click)="addGuest()"
+      color="primary"
+    >
       Add Guest
     </button>
   </div>
@@ -167,11 +207,21 @@
               />
             </mat-form-field>
           </div>
+          <div>
+            <button
+              mat-raised-button
+              color="primary"
+              type="button"
+              (click)="removeGuest(i)"
+              >
+              Remove Guest
+            </button>
+          </div>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
   <div>
-    <button mat-button color="primary">Book Room</button>
+    <button mat-raised-button color="primary">Book Room</button>
   </div>
 </form>
