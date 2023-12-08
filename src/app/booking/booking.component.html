@@ -2,7 +2,8 @@
 {{ bookingForm.value | json }}
 {{ bookingForm.pristine | json }}
 {{ bookingForm.dirty | json }} -->
-<!-- {{ bookingForm.valid | json }}  -->
+{{ bookingForm.invalid | json }}
+{{ bookingForm.valid | json }}
 
 <div>
   <button
@@ -57,7 +58,7 @@
       formControlName="guestName"
       placeholder="Guest Name"
     />
-    <!-- {{ bookingForm.get("guestName")?.errors | json }} -->
+    {{ bookingForm.get("guestName")?.errors | json }}
     <mat-error *ngIf="bookingForm.get('guestName')?.hasError('minlength')"
       >Guest name should be 5 characters long</mat-error
     >
@@ -75,7 +76,7 @@
   <mat-form-field>
     <mat-label>Mobile Number</mat-label>
     <input
-      type="text"
+      type="number"
       matInput
       formControlName="mobileNumber"
       placeholder="Mobile number"
@@ -100,18 +101,19 @@
 
   <mat-form-field>
     <mat-label>Checkout date</mat-label>
-    <input matInput [matDatepicker]="picker2" formControlName="checkoutDate" />
+    <input matInput [matDatepicker]="checkout" formControlName="checkoutDate" />
     <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
+    <mat-datepicker-toggle matSuffix [for]="checkout"></mat-datepicker-toggle>
+    <mat-datepicker #checkout></mat-datepicker>
+    {{ bookingForm.get("checkoutDate")?.errors | json }}
   </mat-form-field>
 
   <mat-form-field>
     <mat-label>Booking date</mat-label>
-    <input matInput [matDatepicker]="picker3" formControlName="bookingDate" />
+    <input matInput [matDatepicker]="booking" formControlName="bookingDate" />
     <mat-hint>MM/DD/YYYY</mat-hint>
-    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-    <mat-datepicker #picker3></mat-datepicker>
+    <mat-datepicker-toggle matSuffix [for]="booking"></mat-datepicker-toggle>
+    <mat-datepicker #booking></mat-datepicker>
   </mat-form-field>
   <div formGroupName="address">
     <mat-accordion class="example-headers-align" multi>
