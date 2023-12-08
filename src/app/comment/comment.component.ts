@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommentService } from './comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, pluck } from 'rxjs';
+import { Comments } from './comment';
 
 @Component({
   selector: 'hinv-comment',

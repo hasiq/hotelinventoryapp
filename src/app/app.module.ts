@@ -1,5 +1,5 @@
 import { InitService } from './init.service';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
@@ -27,6 +27,7 @@ import { EmailvalidatorDirective } from './emailvalidator/emailvalidator.directi
 import { HeaderModule } from './header/header.module';
 import { RouteConfigToken } from 'src/services/routeConfig.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { GlobalErrorHandler } from './errorhandler.service';
 function initFactory(InitService: InitService) {
   return () => InitService.init();
 }
@@ -78,6 +79,10 @@ function initFactory(InitService: InitService) {
       useFactory: initFactory,
       deps: [InitService],
       multi: true,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
     },
   ],
   bootstrap: [AppComponent],
